@@ -25,7 +25,7 @@ describe Admin::FlightsController do
       end
 
       it 're-renders the new method' do
-       
+
       end
     end
   end
