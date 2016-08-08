@@ -1,0 +1,25 @@
+<h1>List of the planes</h1>
+
+<table class="table table-condensed" style="width: 800px; background-color: white;">
+  <tr>
+    <td style="width: 3%;">#</td>
+    <td style="width: 25%;">Plane №<br>Самолет№</td>
+    <td style="width: 25%;">Econom class seats<br/>Мест эконом класса</td>
+    <td style="width: 25%;">Business class seats<br/>Мест бизнес класса</td>
+    <td style="width: 22%;">Edit<br/>Редактировать</td>
+  </tr>
+  <%@company_planes.each do |p|%>
+      <tr>
+        <td><%=p.id%></td>
+        <td><%=p.number%></td>
+        <td><%=p.econom_seats%></td>
+        <td><%=p.business_seats%></td>
+        <td>
+          <a class="btn btn-primary" href="/company/planes/<%=p.id%>/edit">Edit <span class="glyphicon glyphicon-edit"></span></a>
+          <%= link_to company_plane_path(p), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' do %>
+              Delete <span class="glyphicon glyphicon-remove"></span>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+</table>

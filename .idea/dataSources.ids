@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Rails aviaservice: development" uuid="afea7b3d-163c-40b9-884a-ca307f5b8eb9">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails aviaservice: production" uuid="c7a1369b-11ef-434f-bc21-377d2a8beaaa">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+  <data-source name="Rails aviaservice: test" uuid="bae5c2d3-8310-44c2-96c8-e349b72f90a7">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>

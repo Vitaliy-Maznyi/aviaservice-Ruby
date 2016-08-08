@@ -1,0 +1,30 @@
+<h3>List of flights:</h3>
+<table class="table table-condensed" >
+  <tr>
+    <td style="width: 10%;">Flight</td>
+    <td style="width: 10%;">Plane</td>
+    <td style="width: 14%;">From</td>
+    <td style="width: 14%;">Destination</td>
+    <td style="width: 15%;">Departure</td>
+    <td style="width: 15%;">Arrival</td>
+    <td style="width: 7%;">seats</td>
+    <td style="width: 15%;">Edit</td>
+  </tr>
+  <%@company_flights.each do |f|%>
+  <tr>
+    <td><%=f.number%></td>
+    <td><a class="btn btn-default btn-sm" href="/company/planes/<%=f.plane.id%>"><%=f.plane.number%></a></td>
+    <td><%=f.from%></td>
+    <td><%=f.destination%></td>
+    <td><%=f.departure.strftime("%H:%M %m.%d.%Y")%></td>
+    <td><%=f.arrival.strftime("%H:%M %m.%d.%Y")%></td>
+    <td><%=f.plane.econom_seats+f.plane.business_seats%></td>
+    <td>
+      <a class="btn btn-primary btn-sm" href="/company/flights/<%=f.id%>/edit">Edit <span class="glyphicon glyphicon-edit"></span></a>
+      <%= link_to company_flight_path(f), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger btn-sm' do %>
+          Delete <span class="glyphicon glyphicon-remove"></span>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>

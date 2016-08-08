@@ -1,0 +1,24 @@
+<h1>List of the planes</h1>
+<table class="table table-condensed text-center" >
+  <tr>
+    <td style="width: 3%;"><h4>#</h4></td>
+    <td style="width: 25%;"><h4>Plane №</h4></td>
+    <td style="width: 25%;"><h4>Econom class seats</h4></td>
+    <td style="width: 25%;"><h4>Business class seats</h4></td>
+    <td style="width: 22%;"><h4>Edit</h4></td>
+  </tr>
+  <%@admin_planes.each do |p|%>
+      <tr>
+        <td><%=p.id%></td>
+        <td><%=p.number%></td>
+        <td><%=p.econom_seats%></td>
+        <td><%=p.business_seats%></td>
+        <td>
+          <a class="btn btn-primary btn-sm" href="/admin/<%=params[:companyname]%>/planes/<%=p.id%>/edit">Edit <span class="glyphicon glyphicon-edit"></span></a>
+          <%= link_to admin_plane_path(p, :companyname => params[:companyname]), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger btn-sm' do %>
+              Delete <span class="glyphicon glyphicon-remove"></span>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+</table>

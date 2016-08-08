@@ -1,0 +1,15 @@
+<%= form_for(@admin_planes, :url => (@admin_planes.persisted? ? admin_plane_path(companyname: params[:companyname]) : admin_planes_path(companyname: params[:companyname]) ), :html => {:class => 'form'}) do |f| %>
+    <div class="form-group">
+      <label for="number">Plane №:</label>
+      <%= f.text_field :number, autofocus: true, class: "form-control", placeholder: "plane number"  %>
+    </div>
+    <div class="form-group">
+      <label for="econom_seats">Мест эконом класса:</label>
+      <%= f.text_field :econom_seats, class: "form-control", placeholder: "econom seats"  %>
+    </div>
+    <div class="form-group">
+      <label for="business_seats">Мест бизнес класса:</label>
+      <%= f.text_field :business_seats, class: "form-control", placeholder: "business_seats"  %>
+    </div>
+    <%= f.submit "Add plane", class: 'btn btn-success' %>
+<%end%>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Admin Panel</title>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <!-- Custom CSS -->
+  <%= stylesheet_link_tag "sb-admin" %>
+  <%= stylesheet_link_tag "style" %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/admin">Admin control panel - <%= params[:companyname] %> company</a>
+    </div>
+    <!-- Top Menu Items -->
+    <ul class="nav navbar-right top-nav">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <%= current_user.name %> <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="/profile"><i class="fa fa-fw fa-user"></i> Profile</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <%= link_to destroy_user_session_path, :method => :delete do %>
+                <span class="fa fa-fw fa-power-off"></span> Sign Out
+            <% end %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav side-nav">
+        <%if params[:companyname]%>
+        <li>
+          <a href="/admin/<%=params[:companyname]%>/flights"><i class="fa fa-fw fa-list"></i>Flights</a>
+        </li>
+        <li>
+          <a href="/admin/<%=params[:companyname]%>/flights/new"><i class="fa fa-fw fa-plus"></i> New Flight</a>
+        </li>
+        <li>
+          <a href="/admin/<%=params[:companyname]%>/planes"><i class="fa fa-fw fa-plane"></i> Planes</a>
+        </li>
+        <li>
+          <a href="/admin/<%=params[:companyname]%>/planes/new"><i class="fa fa-fw fa-plus"></i> New Plane</a>
+        </li>
+        <li>
+          <a href="/admin/<%=params[:companyname]%>/orders"><i class="fa fa-fw fa-archive"></i> Orders</a>
+        </li>
+        <%end%>
+        <li>
+          <a href="/"><i class="fa fa-fw fa-arrow-circle-left"></i> Back to main page</a>
+        </li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </nav>
+
+  <div id="page-wrapper">
+
+    <div class="container-fluid">
+
+      <!-- Page Heading -->
+      <div class="row">
+        <div class="col-lg-12">
+
+          <%= yield %>
+
+        </div>
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container-fluid -->
+
+  </div>
+  <!-- /#page-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+  var url = window.location;
+  $('ul.nav a').filter(function() {
+    return this.href == url;
+  }).parent().addClass('active');
+</script>
+
+</body>
+
+</html>

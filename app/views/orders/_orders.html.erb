@@ -1,0 +1,25 @@
+<h1>Your orders</h1>
+<table class="table table-condensed text-center" >
+  <tr>
+    <td >№</td>
+    <td >created_at</td>
+    <td >flight_number</td>
+    <td >Tickets</td>
+    <td>price</td>
+  </tr>
+  <%@orders.each do |f|%>
+      <tr>
+        <td><%=f.id%></td>
+        <td><%=f.created_at.strftime("%H:%M %d.%m.%Y")%></td>
+        <td><%=f.flight.number%></td>
+        <td>
+          <% if f.econom_seats.nonzero? %>
+              <%=f.econom_seats%> econom
+          <% else %>
+              <%=f.business_seats%> business
+          <%end%>
+        </td>
+        <td><%=f.price%></td>
+      </tr>
+  <% end %>
+</table>

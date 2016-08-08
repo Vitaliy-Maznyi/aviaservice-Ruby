@@ -1,0 +1,66 @@
+<!--search form-->
+<div style="background-color: lightskyblue; height: 100px; background-image: url(/assets/search_bg.png);">
+  <%= search_form_for @search, class: "form-inline searchForm" do |f| %>
+      <div style="float: left; padding: 20px 5px 20px 30px">
+        <img style="float: left" src="/assets/take_plane_icon1.png" alt="" width="60px" height="60px"/>
+        <%= f.search_field :from_eq, placeholder: "from", class: "form-control searchInput" %>
+      </div>
+      <div style="float: left; padding: 20px 5px 20px 5px">
+        <img style="float: left" src="/assets/land_plane_icon1.png" alt="" width="60px" height="60px"/>
+        <%= f.search_field :destination_eq, placeholder: "to", class: "form-control searchInput" %>
+      </div>
+      <div style="float: left; padding: 20px 5px 20px 5px; position: relative">
+        <img style="float: left" src="/assets/date_icon1.png" alt="" width="60px" height="60px"/>
+        <%= f.search_field :departure_beginning_of_day_gteq, placeholder: "date from", class: "form-control searchDate" %>
+        <div style="float: left; width: 10px; height: 60px; line-height: 60px" class="text-center">-</div>
+        <%= f.search_field :departure_end_of_day_lt, placeholder: "date to", class: "form-control searchDate" %>
+      </div>
+      <div style="float: right; padding: 20px 30px 20px 5px;">
+        <%= f.submit :type => :image, :src => "/assets/search1.png", class: "searchSubmit" %>
+      </div>
+  <% end %>
+</div>
+<br/>
+<!--flights table-->
+<div>
+  <table class="table-condensed flightTable"  style="width: 100%; font-weight: bold; color: white; background: linear-gradient(to top, #315A88 , #2B507C); ">
+    <tr style="color: #ffffff !important; border-bottom: 1px solid grey; font-size: 20px">
+      <td style="width: 15%; "><%= sort_link(@search, :number) %></td>
+      <td style="width: 15%;"><%= sort_link(@search, :from) %></td>
+      <td style="width: 15%;"><%= sort_link(@search, :destination) %></td>
+      <td style="width: 15%;"><%= sort_link(@search, :departure) %></td>
+      <td style="width: 15%;"><%= sort_link(@search, :arrival) %></td>
+      <td style="width: 15%;">Company</td>
+      <td style="width: 10%">Order</td>
+    </tr>
+    <%@flights.each do |f|%>
+    <tr style="border-bottom: 1px solid grey; color: #CFDAFA">
+      <td><%=f.number%></td>
+      <td style="color: yellow"><%=f.from%></td>
+      <td style="color: orange"><%=f.destination%></td>
+      <td>
+                <span style="color: yellow; font-size: 18px"><%=f.departure.strftime("%H:%M %d.%m.%Y")%>
+      </td>
+      <td>
+                <span style="color: orange; font-size: 18px"><%=f.arrival.strftime("%H:%M %d.%m.%Y")%>
+      </td>
+      <td><%=f.company.name%></td>
+      <td><%= link_to 'Order', new_flight_order_path(f), class: "btn btn-success btn-sm" %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+
+<script type="text/javascript">
+  $(function () {
+    $('#q_departure_beginning_of_day_gteq').datetimepicker({
+      format : 'YYYY-MM-DD',
+      useCurrent: false,
+    });
+
+    $('#q_departure_end_of_day_lt').datetimepicker({
+      format : 'YYYY-MM-DD',
+      useCurrent: false
+    });
+  });
+</script>

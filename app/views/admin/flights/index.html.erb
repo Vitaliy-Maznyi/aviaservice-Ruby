@@ -1,0 +1,32 @@
+<h3>List of flights:</h3>
+<table class="table table-condensed text-center" >
+  <tr>
+
+    <td style="width: 10%;"><h4>Flight</h4></td>
+    <td style="width: 10%;"><h4>Plane</h4></td>
+    <td style="width: 14%;"><h4>From</h4></td>
+    <td style="width: 14%;"><h4>Destination</h4></td>
+    <td style="width: 15%;"><h4>Departure</h4></td>
+    <td style="width: 15%;"><h4>Arrival</h4></td>
+    <td style="width: 7%;"><h4>seats</h4></td>
+    <td style="width: 15%;"><h4>Edit</h4></td>
+  </tr>
+  <%@admin_flights.each do |f|%>
+  <tr>
+    <td><%=f.number%></td>
+    <td><a class="btn btn-default btn-sm" href="/admin/<%=params[:companyname]%>/planes/<%=f.plane.id%>"><%=f.plane.number%></a></td>
+    <td><%=f.from%></td>
+    <td><%=f.destination%></td>
+    <td><%=f.departure.strftime("%H:%M %m.%d.%Y")%></td>
+    <td><%=f.arrival.strftime("%H:%M %m.%d.%Y")%></td>
+    <td><%=f.plane.econom_seats+f.plane.business_seats%></td>
+    <td>
+
+      <a class="btn btn-primary btn-sm" href="/admin/<%=params[:companyname]%>/flights/<%=f.id%>/edit">Edit <span class="glyphicon glyphicon-edit"></span></a>
+      <%= link_to admin_flight_url(f, :companyname => params[:companyname]), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger btn-sm' do %>
+          Delete <span class="glyphicon glyphicon-remove"></span>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>

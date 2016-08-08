@@ -1,0 +1,56 @@
+<%= form_for [:company, @company_flights], :html => {:class => 'form'} do |f| %>
+    <div class="form-group">
+      <label for="flight">Рейс №:</label>
+      <%= f.text_field :number, autofocus: true, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label for="from">Вылет из:</label>
+      <%= f.text_field :from, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label for="destination">Назначение:</label>
+      <%= f.text_field :destination, class: "form-control" %>
+    </div>
+      <div class="form-group">
+        <label for="departure">Дата вылета:</label>
+        <%= f.text_field :departure, class: "form-control" %>
+      </div>
+    <div class="form-group">
+      <label for="arrival">Дата прилета:</label>
+      <%= f.text_field :arrival, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label for="econom_price">Цена биллета економ класса:</label>
+      <%= f.text_field :econom_price, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label for="business_price">Цена биллета бизнес класса:</label>
+      <%= f.text_field :business_price, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <label for="plane_id">Choose plane:</label>
+      <%= f.select("plane_id", Plane.where(company_id: @company.id).collect {|p| [ p.number, p.id ] }, {}, { :class => 'form-control' }) %>
+    </div>
+    <%= f.submit "Add flight", class: 'btn btn-success' %>
+<% end %>
+
+
+<script type="text/javascript">
+  $(function () {
+    $('#flight_departure').datetimepicker({
+      inline: true,
+      sideBySide: true,
+      format : 'DD/MM/YYYY HH:mm',
+      useCurrent: false,
+      defaultDate: "<%= @company_flights.departure %>"
+    });
+
+    $('#flight_arrival').datetimepicker({
+      inline: true,
+      sideBySide: true,
+      format : 'DD/MM/YYYY HH:mm',
+      useCurrent: false,
+      defaultDate: "<%= @company_flights.arrival %>"
+    });
+  });
+</script>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Aviaservice</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "clean-blog" %>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-left" style="width: 100%">
+        <div class="navbar-header">
+          <a class="navbar-brand" style="font-size: 20px; line-height: 16px;" href="/">AviaService</a><br/>
+        </div>
+        <ul class="nav navbar-nav navbar-right user_nav">
+          <% if user_signed_in? %>
+              <li>
+                <%= link_to destroy_user_session_path, :method => :delete do %>
+                    <span class="glyphicon glyphicon-log-out"></span> Sign Out, <%= current_user.name %>?
+                <% end %>
+
+              </li>
+          <% else %>
+              <li>
+                <%= link_to  new_user_session_path do %>
+                    <span class="glyphicon glyphicon-log-in"></span> Sign In
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_user_registration_path do %>
+                    <span class="glyphicon glyphicon-user"></span> Sign Up
+                <% end %>
+              </li>
+          <% end %>
+
+        </ul>
+        </li>
+      </ul>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('/assets/bg_header.jpg')">
+  <div class="container">
+    <div class="centerPosition">
+
+      <%= yield %>
+
+    </div>
+  </div>
+</header>
+
+<hr>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+
+        <p class="copyright text-muted">Copyright &copy; AviaService 2015</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  $(document).ready(function() {
+    setTimeout(function(){ $('.transTime1').css("opacity","1"); }, 1000);
+    setTimeout(function(){ $('.transTime2').css("opacity","1"); }, 2000);
+    setTimeout(function(){ $('.transTime3').css("opacity","1"); }, 3000);
+  });
+</script>
+
+
+</body>
+</html>

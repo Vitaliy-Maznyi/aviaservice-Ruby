@@ -1,0 +1,18 @@
+<div class="formcenter">
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3 class="panel-title"><strong>New company </strong></h3></div>
+    <div class="panel-body">
+      <%= form_for @company, url: {action: "create"} do |f| %>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <%= f.text_field :name, autofocus: true, class: "form-control", placeholder: "Name of the company"  %>
+          </div>
+          <div class="form-group">
+            <label for="country">Country </label>
+            <%= f.text_field :country, autocomplete: "off", class: "form-control", placeholder: "Country" %>
+          </div>
+          <%= f.submit "Register", class: 'btn btn-default' %>
+      <% end %>
+    </div>
+  </div>
+</div>

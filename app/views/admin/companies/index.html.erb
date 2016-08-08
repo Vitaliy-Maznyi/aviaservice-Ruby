@@ -1,0 +1,8 @@
+<h1>List of the companies</h1>
+<div class="list-group">
+  <% @companies.each do |company| %>
+      <a href="/admin/<%= company.name%>/flights" class="list-group-item"><h3><%= company.name %></h3></a>
+  <% end %>
+</div>
+
+

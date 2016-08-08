@@ -1,0 +1,22 @@
+<h1>Plane <%= @admin_planes.number %></h1>
+<table class="table table-condensed" style="width: 800px; background-color: white;">
+  <tr>
+    <td style="width: 3%;">#</td>
+    <td style="width: 25%;">Plane №<br>Самолет№</td>
+    <td style="width: 25%;">Econom class seats<br/>Мест эконом класса</td>
+    <td style="width: 25%;">Business class seats<br/>Мест бизнес класса</td>
+    <td style="width: 22%;">Edit<br/>Редактировать</td>
+  </tr>
+  <tr>
+    <td><%=@admin_planes.id%></td>
+    <td><%=@admin_planes.number%></td>
+    <td><%=@admin_planes.econom_seats%></td>
+    <td><%=@admin_planes.business_seats%></td>
+    <td>
+      <a class="btn btn-primary" href="/admin/<%=params[:companyname]%>/planes/<%=@admin_planes.id%>/edit">Edit <span class="glyphicon glyphicon-edit"></span></a>
+      <%= link_to admin_plane_path(@admin_planes), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' do %>
+          Delete <span class="glyphicon glyphicon-remove"></span>
+      <% end %>
+    </td>
+  </tr>
+</table>

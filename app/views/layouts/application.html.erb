@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Aviaservice</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "style" %>
+  <%= stylesheet_link_tag "clean-blog" %>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+  <div class="container-fluid">
+
+    <!-- nav links -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-left" style="width: 100%">
+        <div class="navbar-header">
+          <a class="navbar-brand" style="font-size: 20px; line-height: 16px;" href="/">AviaService</a><br/>
+        </div>
+        <% if current_user.try(:admin?) %>
+          <li><a href="/admin/">Admin Panel</a></li>
+        <% end %>
+        <% if user_signed_in? && current_user.company.present? %>
+          <li><a href="/company/">Company Panel</a></li>
+        <% end %>
+        <% if user_signed_in? && !current_user.company.present?  %>
+          <li><a href="/companies/new/">Company registration</a></li>
+        <% end %>
+        <% if user_signed_in? %>
+            <li><a href="/profile">Profile</a></li>
+        <% end %>
+        <!--user session navbar-->
+        <ul class="nav navbar-nav navbar-right user_nav">
+          <% if user_signed_in? %>
+              <li>
+                <%= link_to destroy_user_session_path, :method => :delete do %>
+                    <span class="glyphicon glyphicon-log-out"></span> Sign Out, <%= current_user.name %>?
+                <% end %>
+
+              </li>
+          <% else %>
+              <li>
+                <%= link_to  new_user_session_path do %>
+                    <span class="glyphicon glyphicon-log-in"></span> Sign In
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_user_registration_path do %>
+                    <span class="glyphicon glyphicon-user"></span> Sign Up
+                <% end %>
+              </li>
+          <% end %>
+
+        </ul>
+        </li>
+      </ul>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container -->
+</nav>
+
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url('/assets/bg_header.jpg')">
+  <div class="container">
+    <div class="row" style="float: left; margin-left: -90px">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="site-heading">
+          <h1 class="transitionOpacity transTime1"><a style="" href="/">AviaService</a></h1>
+          <hr class="small transitionOpacity transTime2">
+          <span class="subheading transitionOpacity transTime3">There is no better way to fly </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<div class="container container_main">
+
+  <div class="starter-template">
+
+    <p id="notice"><%= notice %></p>
+    <%= flash_messages %>
+
+
+    <%= yield %>
+
+  </div>
+
+</div>
+
+<hr>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">Copyright &copy; AviaService 2016</p>
+        <p class="copyright text-muted">Rails</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  $(document).ready(function() {
+    setTimeout(function(){ $('.transTime1').css("opacity","1"); }, 1000);
+    setTimeout(function(){ $('.transTime2').css("opacity","1"); }, 2000);
+    setTimeout(function(){ $('.transTime3').css("opacity","1"); }, 3000);
+  });
+</script>
+
+
+</body>
+</html>
