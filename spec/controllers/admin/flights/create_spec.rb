@@ -19,14 +19,13 @@ describe Admin::FlightsController do
       end
     end
 
-    context "with invalid attributes" do
-      it "does not save the new contact" do
+    context 'with invalid attributes' do
+      it 'does not save the new flight' do
 
       end
 
-      it "re-renders the new method" do
-        post :create, contact: Factory.attributes_for(:invalid_contact)
-        response.should render_template :new
+      it 're-renders the new method' do
+       
       end
     end
   end
