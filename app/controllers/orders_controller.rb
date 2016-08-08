@@ -2,6 +2,9 @@ class OrdersController < ApplicationController
 
 
   def new
+    unless signed_in?
+      redirect_to root_path, notice: 'You have to be signed in to book a ticket'
+    end
     @flight = Flight.find(params[:flight_id])
     @order = Order.new
   end
@@ -9,7 +12,7 @@ class OrdersController < ApplicationController
   def create
     @flight = Flight.find(params[:flight_id])
     @order = @flight.orders.create(order_params)
-    @order.user_id = current_user.id if current_user
+    @order.user_id = current_user.id
     @order.save ? (redirect_to root_path, notice: 'tickets were ordered successfully') : (render 'new')
   end
 
