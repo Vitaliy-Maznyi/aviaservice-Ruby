@@ -1,5 +1,6 @@
 class Admin::OrdersController < AdminController
 
+  # /admin/:companyname/orders GET
   def index
     @search = Order.ransack(params[:q])
     if params[:q]
@@ -10,6 +11,7 @@ class Admin::OrdersController < AdminController
     end
   end
 
+  # /admin/:companyname/orders/:id DELETE
   def destroy
     @admin_orders = Order.find(params[:id])
     @admin_orders.destroy

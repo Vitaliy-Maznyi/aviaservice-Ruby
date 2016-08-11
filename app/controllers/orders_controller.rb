@@ -1,14 +1,13 @@
 class OrdersController < ApplicationController
 
-
+  # flights/:flight_id/orders/new GET
   def new
-    unless signed_in?
-      redirect_to root_path, notice: 'You have to be signed in to book a ticket'
-    end
+    redirect_to root_path, notice: 'You have to be signed in to book a ticket' unless signed_in?
     @flight = Flight.find(params[:flight_id])
     @order = Order.new
   end
 
+  # flights/:flight_id/orders POST
   def create
     @flight = Flight.find(params[:flight_id])
     @order = @flight.orders.create(order_params)

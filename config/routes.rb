@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  root 'flights#index'
+
   devise_for :users
 
   get 'orders' => 'orders#index'
@@ -27,7 +29,5 @@ Rails.application.routes.draw do
       resources :orders, only: [:index, :destroy]
     end
   end
-
-  root 'flights#index'
 
 end

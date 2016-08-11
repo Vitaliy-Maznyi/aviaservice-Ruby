@@ -2,6 +2,7 @@ class CompaniesController < ApplicationController
 
   before_action :authenticate_user!, :is_company?
 
+
   def new
     @company = Company.new
   end

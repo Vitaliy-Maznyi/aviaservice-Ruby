@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   def layout_by_resource
     if devise_controller?
-      'devise_sign'
+      'devise_sign' #layout for sign in/sign up pages
     else
       'application'
     end
