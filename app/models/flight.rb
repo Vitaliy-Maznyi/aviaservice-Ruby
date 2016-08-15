@@ -1,7 +1,7 @@
 class Flight < ActiveRecord::Base
   belongs_to :company
   belongs_to :plane
-  has_many :orders
+  has_many :orders, dependent: :delete_all
 
   attr_accessor :price
 
