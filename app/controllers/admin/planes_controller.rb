@@ -24,13 +24,13 @@ class Admin::PlanesController < AdminController
   def create
     @admin_planes = Plane.new(plane_params)
     @admin_planes.company_id = Plane.find_company_name(params[:companyname]).take.company_id
-    @admin_planes.save ? (redirect_to admin_planes_path(params[:companyname])) : (render 'new')
+    @admin_planes.save ? (redirect_to admin_planes_path(params[:companyname])) : (flash.now[:danger] = 'You have to fill all fields'; render 'new')
   end
 
   # /admin/:companyname/planes/:id PUT
   def update
     @admin_planes = Plane.find(params[:id])
-    @admin_planes.update(plane_params) ? (redirect_to admin_planes_path(params[:companyname]) ) : (render 'edit')
+    @admin_planes.update(plane_params) ? (redirect_to admin_planes_path(params[:companyname]) ) : (flash.now[:danger] = 'You have to fill all fields'; render 'edit')
   end
 
   # /admin/:companyname/planes/:id DELETE

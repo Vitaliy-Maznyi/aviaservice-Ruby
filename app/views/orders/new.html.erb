@@ -1,17 +1,3 @@
-<% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
-      <ul>
-        <% @order.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-<% end %>
-
-
-
 <table  class="table-condensed" style="border: 1px solid black; ">
   <tr style="background-color: #22225e">
     <td colspan="5" style="color: white"><h4><%=@flight.from%>, <%=@flight.departure.strftime("%e %b, %A")%> &rarr; <%=@flight.destination%>, <%=@flight.arrival.strftime("%e %b, %A")%></h4></td>

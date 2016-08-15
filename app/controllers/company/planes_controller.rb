@@ -24,13 +24,13 @@ class Company::PlanesController < CompanyController
   def create
     @company_planes = Plane.new(plane_params)
     @company_planes.company_id = @company.id
-    @company_planes.save ? (redirect_to action: "index") : (render 'new')
+    @company_planes.save ? (redirect_to action: "index") : (flash.now[:danger] = 'You have to fill all fields'; render 'new')
   end
 
   # /company/planes/:id PUT
   def update
     @company_planes = Plane.find(params[:id])
-    @company_planes.update(plane_params) ? (redirect_to action: "index") : (render 'edit')
+    @company_planes.update(plane_params) ? (redirect_to action: "index") : (flash.now[:danger] = 'You have to fill all fields'; render 'edit')
   end
 
   # /company/planes/:id DELETE

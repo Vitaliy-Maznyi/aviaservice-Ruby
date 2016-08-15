@@ -5,6 +5,8 @@ class Flight < ActiveRecord::Base
 
   attr_accessor :price
 
+  validates_presence_of :number, :from, :destination, :departure, :arrival, :econom_price, :business_price, :plane_id
+
   def self.find_company_name(company_name)
     joins(:company).where("companies.name = ?",company_name)
   end

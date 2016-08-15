@@ -1,5 +1,4 @@
 class CompanyController < ApplicationController
-  layout 'company'
 
   before_action :authenticate_user!, :is_company?, :current_company
 

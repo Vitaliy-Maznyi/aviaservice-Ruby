@@ -10,7 +10,7 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     @company.user_id = current_user.id if current_user
-    @company.save ? (redirect_to root_path) : (render 'new')
+    @company.save ? (redirect_to root_path) : (flash.now[:danger] = 'You have to fill all fields'; render 'new')
   end
 
   private

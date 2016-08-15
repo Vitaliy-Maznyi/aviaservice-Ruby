@@ -7,8 +7,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def layout_by_resource
-    if devise_controller?
+    if devise_controller? || (request.fullpath.include? '/companies')
       'devise_sign' #layout for sign in/sign up pages
+    elsif request.fullpath.include? '/admin'
+      'admin'
+    elsif request.fullpath.include? '/company'
+      'company'
     else
       'application'
     end
