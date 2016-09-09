@@ -17,7 +17,7 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
 
-  config.extend Devise::TestHelpers, :type => :controller
+  config.include Devise::TestHelpers, :type => :controller
   config.include ControllerHelpers, :type => :controller
   config.include Rails.application.routes.url_helpers
 end
