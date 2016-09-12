@@ -1,5 +1,5 @@
 describe Admin::FlightsController do
-  describe "POST #create" do
+  describe 'POST #create' do
     let(:company) {create :company, name: 'Air1'}
     let(:plane) { create :plane }
     let!(:admin_flights) {create :flight, company: company}
@@ -9,7 +9,7 @@ describe Admin::FlightsController do
     end
 
     def post_query(dest = '')
-      post :create, :companyname => 'Air1', flight: attributes_for(:flight, company_id: company.id, plane_id: plane.id, destination: dest)
+      post :create, companyname: company.name, flight: attributes_for(:flight, company_id: company.id, plane_id: plane.id, destination: dest)
     end
 
     context 'with valid attributes' do
@@ -28,7 +28,7 @@ describe Admin::FlightsController do
         expect{ post_query }.to_not change(Flight, :count)
       end
 
-      it 're-renders the new method' do
+      it 're-renders the new template' do
         post_query
         expect(response).to render_template :new
       end

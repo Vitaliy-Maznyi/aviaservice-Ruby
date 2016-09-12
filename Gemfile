@@ -24,12 +24,16 @@ group :development do
   gem 'spring'
 end
 
+group :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+end
+
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 gem 'ransack'
-gem 'rspec-rails'
-gem 'capybara'
-gem 'factory_girl_rails'
 gem 'timecop'

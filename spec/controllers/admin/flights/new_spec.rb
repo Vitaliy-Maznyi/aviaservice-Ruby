@@ -1,10 +1,11 @@
 describe Admin::FlightsController do
+  let(:company) { create :company }
 
   context "GET #new" do
 
     before(:each) do
       login_admin
-      get :new, :companyname => 'Air1'
+      get :new, companyname: company.name
     end
 
     it 'assigns a new flight to @admin_flights' do

@@ -1,17 +1,16 @@
 describe Admin::FlightsController do
-
   context 'GET #index' do
     let(:company) {create :company, name: 'Air1'}
-    let(:admin_flight) { create_list(:flight, 4, company: company) }
+    let(:admin_flight_list) { create_list(:flight, 4, company: company) }
 
     before(:each) do
       login_admin
-      get :index, :companyname => 'Air1'
+      get :index, companyname: company.name
     end
 
 
     it 'fills an array of flights' do
-      expect(assigns(:admin_flights)).to match_array(admin_flight)
+      expect(assigns(:admin_flights)).to match_array(admin_flight_list)
     end
 
     it 'renders the :index view' do

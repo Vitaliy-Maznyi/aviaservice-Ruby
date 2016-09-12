@@ -2,6 +2,7 @@
 require 'factory_girl_rails'
 require 'rails_helper'
 require 'support/controller_helpers'
+require 'database_cleaner'
 
 RSpec.configure do |config|
 
@@ -20,4 +21,15 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, :type => :controller
   config.include ControllerHelpers, :type => :controller
   config.include Rails.application.routes.url_helpers
+  config.before(:suite) do
+    DatabaseCleaner[:active_record].strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end
