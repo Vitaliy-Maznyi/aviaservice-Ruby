@@ -34,7 +34,4 @@ describe Admin::FlightsController do
       end
     end
   end
-
-
-
 end

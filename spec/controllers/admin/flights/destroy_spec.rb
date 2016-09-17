@@ -13,7 +13,7 @@ describe Admin::FlightsController do
       }.to change(Flight,:count).by(-1)
     end
 
-    it 'redirects to contacts#index' do
+    it 'redirects to admin/flights#index' do
       delete :destroy, id: flight.id, companyname: company.name
       expect(response).to redirect_to :action => :index
     end

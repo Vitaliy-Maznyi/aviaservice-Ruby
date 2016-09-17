@@ -7,7 +7,7 @@ class Admin::PlanesController < AdminController
 
   # /admin/:companyname/planes/:id GET
   def show
-    @admin_planes = Plane.find_company_name(params[:companyname]).take
+    @admin_planes = Plane.find_company_name(params[:companyname]).find(params[:id])
   end
 
   # /admin/:companyname/planes/new GET
