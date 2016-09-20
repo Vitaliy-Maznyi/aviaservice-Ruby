@@ -1,15 +1,16 @@
-describe Admin::FlightsController do
+describe Company::FlightsController do
   describe 'POST #create' do
-    let(:company) {create :company, name: 'Air1'}
+    let!(:user) {create :user}
+    let!(:company) {create :company, user: user}
     let(:plane) { create :plane }
-    let!(:admin_flights) {create :flight, company: company}
+    let!(:company_flights) {create :flight, company: company}
 
     before(:each) do
-      login_admin
+      sign_in user
     end
 
     def post_query(dest = '')
-      post :create, companyname: company.name, flight: attributes_for(:flight, plane_id: plane.id, destination: dest)
+      post :create, flight: attributes_for(:flight, plane_id: plane.id, destination: dest)
     end
 
     context 'with valid attributes' do
@@ -17,7 +18,7 @@ describe Admin::FlightsController do
         expect{ post_query('Kiev') }.to change(Flight, :count).by(1)
       end
 
-      it 'redirects to the admin/flights index' do
+      it 'redirects to the company/flights index' do
         post_query('Kiev')
         expect(response).to redirect_to :action => :index
       end
