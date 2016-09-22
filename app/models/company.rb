@@ -3,5 +3,5 @@ class Company < ActiveRecord::Base
   has_many :flights
   has_many :orders, through: :flights
 
-  validates_presence_of :name, :country
+  validates_presence_of :name, :country, :user_id
 end

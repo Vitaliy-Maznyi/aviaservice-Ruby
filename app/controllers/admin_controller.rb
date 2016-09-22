@@ -4,7 +4,7 @@ class AdminController < ApplicationController
 
   private
   def is_admin?
-    current_user.try(:admin?) ? (true) : ( redirect_to(new_user_session_path) )
+     redirect_to(new_user_session_path) unless current_user.try(:admin?)
   end
 
 end

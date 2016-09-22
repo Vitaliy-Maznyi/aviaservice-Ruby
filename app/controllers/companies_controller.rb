@@ -19,7 +19,7 @@ class CompaniesController < ApplicationController
   end
 
   def is_company?
-    redirect_to(new_user_session_path) if current_user.company.present?
+    redirect_to(root_path) if current_user.company.present?
   end
 
 end
