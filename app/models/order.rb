@@ -19,7 +19,7 @@ class Order < ActiveRecord::Base
     elsif flight.available_econom_tickets < self.econom_seats
       errors.add(:base, 'No free econom tickets')
     else
-      return true
+      true
     end
   end
 
